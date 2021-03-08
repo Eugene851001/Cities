@@ -10,20 +10,36 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var fontButton: UIButton!
+    @IBOutlet weak var sizeButton: UIButton!
+    @IBOutlet weak var colorButton: UIButton!
+    @IBOutlet weak var languageButton: UIButton!
     
-    private var selectedColor = Style.color
+    private var selectedColor = Settings.color
     private var colorPicker = UIColorPickerViewController()
     
-    private var selectedFont = Style.font
+    private var selectedFont = Settings.font
     private var fontPicker = UIFontPickerViewController()
     
     
-    private var textSize: CGFloat = Style.textSize
+    private var textSize: CGFloat = Settings.textSize
+    
+    @IBAction func onSizeButtonClick(_ sender: Any) {
+        performSegue(withIdentifier: "showSizePicker", sender: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        useLocale()
+    }
+    
+    private func useLocale() {
+        let lang = Settings.lang
+        fontButton.setTitle("font".localized(lang), for: .normal)
+        sizeButton.setTitle("size".localized(lang), for: .normal)
+        colorButton.setTitle("color".localized(lang), for: .normal)
+        languageButton.setTitle("language".localized(lang), for: .normal)
     }
     
     private func selectColor() {
@@ -53,6 +69,9 @@ class SettingsViewController: UIViewController {
         case "showSizePicker":
             let sizePicker = segue.destination as! SizePickerViewController
             sizePicker.delegate = self
+        case "showLanguagePicker":
+            let langPicker = segue.destination as! LangPickerViewController
+            langPicker.delegate = self
         default:
             break
         }
@@ -74,9 +93,10 @@ extension SettingsViewController: UIColorPickerViewControllerDelegate {
     
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         selectedColor = viewController.selectedColor
-        Style.color = selectedColor
+        Settings.color = selectedColor
         view.backgroundColor = selectedColor
         print("Color selected")
+     //   UserDefaults.standard.setValue(selectedColor, forKey: "textColor")
     }
     
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
@@ -88,20 +108,33 @@ extension SettingsViewController: UIFontPickerViewControllerDelegate {
     
     func fontPickerViewControllerDidPickFont(_ viewController: UIFontPickerViewController) {
         selectedFont = viewController.selectedFontDescriptor!
-        Style.font = selectedFont
-        fontButton.titleLabel?.font = UIFont(descriptor: Style.font, size: textSize)
+        Settings.font = selectedFont
+        fontButton.titleLabel?.font = UIFont(descriptor: Settings.font, size: textSize)
         print("Font picked")
+        UserDefaults.standard.set(selectedFont.pointSize, forKey: "fontSize");
+        UserDefaults.standard.set(selectedFont.postscriptName, forKey: "fontName");
+        
     }
 }
 
 extension SettingsViewController: SizePickerDelegate {
     func sizePickerViewControllerDidPickSize(_ textSize: CGFloat) {
         self.textSize = textSize
-        Style.textSize = textSize
+        Settings.textSize = textSize
         print("Size picked");
-        fontButton.titleLabel?.font = UIFont(descriptor: Style.font, size: Style.textSize)
+        fontButton.titleLabel?.font = UIFont(descriptor: Settings.font, size: Settings.textSize)
+        UserDefaults.standard.setValue(Float(textSize), forKey: "textSize")
     }
+}
+
+extension SettingsViewController: LangPickerDelegate {
     
-    
+    func langPickerViewControllerDidPickLang(_ lang: String) {
+        print("Language picked: \(lang)")
+        Settings.lang = lang
+        print("language".localized(lang))
+        useLocale()
+        UserDefaults.standard.setValue(lang, forKey: "language")
+    }
 }
 

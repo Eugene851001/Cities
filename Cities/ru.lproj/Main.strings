@@ -1,0 +1,111 @@
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "1kd-4y-vHW"; */
+"1kd-4y-vHW.normalTitle" = "Регистрация";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "2l7-ds-AMF"; */
+"2l7-ds-AMF.text" = "Имя";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "2pc-Gs-lcZ"; */
+"2pc-Gs-lcZ.text" = "Имя";
+
+/* Class = "UILabel"; text = "Popuation"; ObjectID = "4jP-1c-gEG"; */
+"4jP-1c-gEG.text" = "Население";
+
+/* Class = "UILabel"; text = "country"; ObjectID = "6Ae-UI-Dn2"; */
+"6Ae-UI-Dn2.text" = "Страна";
+
+/* Class = "UILabel"; text = "Latitude"; ObjectID = "CZS-hQ-VA9"; */
+"CZS-hQ-VA9.text" = "Latitude";
+
+/* Class = "UIButton"; normalTitle = "Font"; ObjectID = "FrN-La-MgS"; */
+"FrN-La-MgS.normalTitle" = "Font";
+
+/* Class = "UIButton"; normalTitle = "Filter"; ObjectID = "HOO-8y-OTd"; */
+"HOO-8y-OTd.normalTitle" = "Filter";
+
+/* Class = "UITabBarItem"; title = "Cities"; ObjectID = "IxN-nu-h6r"; */
+"IxN-nu-h6r.title" = "Cities";
+
+/* Class = "UILabel"; text = "password"; ObjectID = "Jce-4e-Zdk"; */
+"Jce-4e-Zdk.text" = "password";
+
+/* Class = "UIButton"; normalTitle = "Registrate"; ObjectID = "KIx-5V-XYo"; */
+"KIx-5V-XYo.normalTitle" = "Registrate";
+
+/* Class = "UILabel"; text = "E-mail"; ObjectID = "KaP-n8-goj"; */
+"KaP-n8-goj.text" = "E-mail";
+
+/* Class = "UILabel"; text = "Capital"; ObjectID = "Kwv-P1-mMy"; */
+"Kwv-P1-mMy.text" = "Capital";
+
+/* Class = "UILabel"; text = "Longitude"; ObjectID = "LzO-ij-B5v"; */
+"LzO-ij-B5v.text" = "Longitude";
+
+/* Class = "UIButton"; normalTitle = "Add image"; ObjectID = "MlJ-Vc-XF4"; */
+"MlJ-Vc-XF4.normalTitle" = "Add image";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "P6e-SH-rOu"; */
+"P6e-SH-rOu.text" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Play Video"; ObjectID = "PHc-Vs-990"; */
+"PHc-Vs-990.normalTitle" = "Play Video";
+
+/* Class = "UILabel"; text = "Capital"; ObjectID = "UZr-FE-gyD"; */
+"UZr-FE-gyD.text" = "Capital";
+
+/* Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "W60-8c-5Xo"; */
+"W60-8c-5Xo.normalTitle" = "Sign in";
+
+/* Class = "UIButton"; normalTitle = "Set"; ObjectID = "WgW-m4-Ahk"; */
+"WgW-m4-Ahk.normalTitle" = "Set";
+
+/* Class = "UIButton"; normalTitle = "Color"; ObjectID = "XKj-ew-tEM"; */
+"XKj-ew-tEM.normalTitle" = "Color";
+
+/* Class = "UILabel"; text = "Population"; ObjectID = "Ysb-V1-VfD"; */
+"Ysb-V1-VfD.text" = "Population";
+
+/* Class = "UIButton"; normalTitle = "Video"; ObjectID = "ZgS-Ja-70F"; */
+"ZgS-Ja-70F.normalTitle" = "Video";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "aqv-CK-b5P"; */
+"aqv-CK-b5P.title" = "Settings";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "c8P-PC-SrM"; */
+"c8P-PC-SrM.text" = "Country";
+
+/* Class = "UITabBarItem"; title = "Map"; ObjectID = "gHS-Gs-9AU"; */
+"gHS-Gs-9AU.title" = "Map";
+
+/* Class = "UIButton"; normalTitle = "Add Video"; ObjectID = "gb7-59-OSH"; */
+"gb7-59-OSH.normalTitle" = "Add Video";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "jU5-7Z-QTm"; */
+"jU5-7Z-QTm.text" = "Password";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "kAs-q2-bS9"; */
+"kAs-q2-bS9.text" = "Country";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "kf3-hk-3Oj"; */
+"kf3-hk-3Oj.text" = "Country";
+
+/* Class = "UILabel"; text = "email"; ObjectID = "pW7-ek-EJ5"; */
+"pW7-ek-EJ5.text" = "email";
+
+/* Class = "UIButton"; normalTitle = "View more"; ObjectID = "pk3-Ng-MQh"; */
+"pk3-Ng-MQh.normalTitle" = "View more";
+
+/* Class = "UIButton"; normalTitle = "Size"; ObjectID = "qqN-Ls-KZL"; */
+"qqN-Ls-KZL.normalTitle" = "Size";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "rgu-Qt-y7X"; */
+"rgu-Qt-y7X.normalTitle" = "Save";
+
+/* Class = "UIButton"; normalTitle = "Log out"; ObjectID = "rib-0f-Udv"; */
+"rib-0f-Udv.normalTitle" = "Log out";
+
+/* Class = "UILabel"; text = "Why are we still here?"; ObjectID = "wRp-b6-0Vd"; */
+"wRp-b6-0Vd.text" = "Why are we still here?";
+
+/* Class = "UILabel"; text = "Year"; ObjectID = "yMp-uj-d1F"; */
+"yMp-uj-d1F.text" = "Year";

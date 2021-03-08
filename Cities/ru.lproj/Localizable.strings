@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Cities
+
+  Created by Admin on 07.03.2021.
+  
+*/
+
+"name" = "Имя";
+"country" = "Страна";
+"population" = "Население";
+"year" = "Год";
+"latitude" = "Широта";
+"longitude" = "Долгота";
+"capital" = "Столица";
+"signin" = "Войти";
+"registration" = "Регистрация";
+"registrate" = "Зарегистрировать";
+"logout" = "Выйти"; 
+"password" = "Пароль";
+"email" = "Почта";
+
+"font" = "Шрифт";
+"color" = "Цвет";
+"size" = "Размер";
+"language" = "Язык";
+
+"yearFrom" = "Минимальный год";
+"yearTo" = "Максимальный год";

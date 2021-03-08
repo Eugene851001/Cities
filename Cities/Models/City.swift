@@ -12,6 +12,10 @@ class City: Codable {
     var name: String
     var country: String?
     var video: String?
+    var capital: Bool
+    var population: Int?
+    var year: Int?
+    var mail: String?
     
     var latitude: Double?
     var longitude: Double?
@@ -20,7 +24,8 @@ class City: Codable {
     
     var images = [String]()
     
-    init(name: String) {
+    init(name: String, for capital: Bool) {
         self.name = name
+        self.capital = capital
     }
 }

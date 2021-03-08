@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let latitude = 53.906321
         let longitude = 21.570538
         let camera =  GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 6.0)
@@ -25,11 +26,11 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         self.view.addSubview(mapView)
         
-        let marker = GMSMarker()
+      /*  let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         marker.title = "Title"
         marker.snippet = "Snippet"
-        marker.map = mapView
+        marker.map = mapView*/
         
         cities = CitiesService.shared.cities!
         citiesId = CitiesService.shared.citiesId!

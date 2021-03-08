@@ -18,6 +18,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         GMSServices.provideAPIKey("AIzaSyB9gsvFI0Im1yyEpsuFH86IOfx92RbaRns")
         
+        print(UserDefaults.standard.string(forKey: "language")!)
+        if let lang = UserDefaults.standard.string(forKey: "language") {
+            Settings.lang = lang
+        }
+        
+        let textSize = UserDefaults.standard.float(forKey: "textSize")
+        if (textSize != 0) {
+            Settings.textSize = CGFloat(textSize)
+        }
+        
+        let fontSize = UserDefaults.standard.float(forKey: "fontSize");
+        if fontSize != 0, let fontName = UserDefaults.standard.string(forKey: "fontName") {
+            Settings.font = UIFontDescriptor(name: fontName, size: CGFloat(fontSize))
+        }
+        
+        
+        
+       /* if let textSize = UserDefaults.standard.float(forKey: "textSize") {
+            Settings.textSize = CGFloat(textSize)
+        }*/
+        
         return true
     }
 

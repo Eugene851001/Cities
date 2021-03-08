@@ -1,30 +1,32 @@
 //
-//  SizePickerViewController.swift
+//  LangPickerViewController.swift
 //  Cities
 //
-//  Created by Admin on 28.02.2021.
+//  Created by Admin on 07.03.2021.
 //
 
 import UIKit
 
-protocol SizePickerDelegate {
-    func sizePickerViewControllerDidPickSize(_ textSize: CGFloat)
+protocol LangPickerDelegate {
+    func langPickerViewControllerDidPickLang(_ lang: String)
 }
 
-class SizePickerViewController: UIViewController {
-    
-    var delegate: SizePickerDelegate?
+class LangPickerViewController: UIViewController {
 
-    private var textSize: CGFloat = 17.0
+    @IBOutlet weak var picker: UIPickerView!
     
+    var delegate: LangPickerDelegate?
     
-    private var textSizes = ["15.0", "17.0", "18.0", "19.0"]
+    private var languages = ["en", "ru"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let row = languages.firstIndex(of: Settings.lang)!
+        picker.selectRow(row, inComponent: 0, animated: true)
     }
+    
     
 
     /*
@@ -39,27 +41,26 @@ class SizePickerViewController: UIViewController {
 
 }
 
-extension SizePickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension LangPickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return textSizes.count
+        return languages.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        print("Text size\(textSizes[0])")
-        return textSizes[row]
+        return languages[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        textSize = CGFloat(Float(textSizes[row])!)
+        
+        let lang = languages[row]
         if delegate != nil {
-            delegate?.sizePickerViewControllerDidPickSize(textSize)
+            delegate?.langPickerViewControllerDidPickLang(lang)
         }
-        print("Size picked")
     }
     
 }

@@ -25,6 +25,17 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var videoButton: UIButton!
     @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var yearField: UITextField!
+    @IBOutlet weak var populationField: UITextField!
+    @IBOutlet weak var capitalSwitch: UISwitch!
+    
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var populationLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
+    
+    @IBOutlet weak var capitalLabel: UILabel!
     
     @IBAction func onGalleryButtonClick(_ sender: Any) {
         performSegue(withIdentifier: "showGallerySegue", sender: self)
@@ -48,6 +59,16 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func onSaveButtonClick(_ sender: Any) {
         currentCity.name = nameField.text!
         currentCity.country = countryField.text!
+        
+        if let population = Int(populationField.text!) {
+            currentCity.population = population;
+        }
+        
+        if let year  = Int(yearField.text!) {
+            currentCity.year = year
+        }
+        
+        currentCity.capital = capitalSwitch.isOn
         
         let db = Firestore.firestore()
         do {
@@ -84,6 +105,7 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         setImages(currentCity)
         setVideo(currentCity)
         getImages()
+        localizeLabels()
         
         if currentCity.video == nil {
             videoButton.isEnabled = false
@@ -127,6 +149,16 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func setFields(_ city: City) {
         nameField.text = city.name
         countryField.text = city.country
+        
+        if let population = city.population {
+            populationField.text = String(describing: population)
+        }
+        
+        if let year = city.year {
+            yearField.text = String(describing: year)
+        }
+        
+        capitalSwitch.isOn = city.capital
     }
     
     func setImages(_ city: City) {
@@ -143,6 +175,14 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
             self.photoView.image = UIImage(data: data!)
         }
+    }
+    
+    func localizeLabels() {
+        let lang = Settings.lang
+        nameLabel.text = "name".localized(lang)
+        countryLabel.text = "country".localized(lang)
+        populationLabel.text = "population".localized(lang)
+        yearLabel.text = "year".localized(lang)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

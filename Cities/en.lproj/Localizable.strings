@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Cities
+
+  Created by Admin on 07.03.2021.
+  
+*/
+
+"name" = "Name";
+"country" = "Country";
+"population" = "Population";
+"year" = "Year";
+"latitude" = "Latitude";
+"longitude" = "Longitide";
+"capital" = "Capital";
+"signin" = "Sign in";
+"registration" = "Registration";
+"registrate" = "registrate";
+"logout" = "log out";
+"password" = "password";
+"email" = "email";
+
+"font" = "Font";
+"color" = "Color";
+"size" = "Size";
+"language" = "Language";
+
+"yearFrom" = "Year from";
+"yearTo" = "Year to";
