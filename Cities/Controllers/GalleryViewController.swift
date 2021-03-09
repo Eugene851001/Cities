@@ -16,10 +16,14 @@ class GalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-   /*     for _ in 1...12 {
-            images.append(img)
-        }*/
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.title = "gallery".localized(Settings.lang)
     }
     
 

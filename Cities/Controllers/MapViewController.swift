@@ -11,12 +11,12 @@ import GoogleMaps
 class MapViewController: UIViewController {
     
     var cities = [City]()
-    var citiesId = [String]()
     
     var currentCityIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
         let latitude = 53.906321
@@ -26,14 +26,7 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         self.view.addSubview(mapView)
         
-      /*  let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.title = "Title"
-        marker.snippet = "Snippet"
-        marker.map = mapView*/
-        
         cities = CitiesService.shared.cities!
-        citiesId = CitiesService.shared.citiesId!
         
         for city in cities {
             guard let latitude = city.latitude,
@@ -45,16 +38,29 @@ class MapViewController: UIViewController {
             marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             marker.title = city.name
             print(city.name)
-            marker.snippet = "Snippet"
+            marker.snippet = city.country
             marker.map = mapView
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.title = "map".localized(Settings.lang)
+        self.navigationController?.navigationBar.barTintColor = Settings.color
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showCitySegue":
             let cityView = segue.destination as! CityViewController
-            cityView.cityId = citiesId[currentCityIndex]
             cityView.currentCity = cities[currentCityIndex]
         default:
             break
@@ -68,7 +74,7 @@ extension MapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         print("Tapped infoWindow\(marker.position)")
-        //TODO: change this later
+        
         var  i = 0
         for city in cities {
             if city.latitude == marker.position.latitude

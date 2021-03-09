@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var sizeButton: UIButton!
     @IBOutlet weak var colorButton: UIButton!
     @IBOutlet weak var languageButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     
     private var selectedColor = Settings.color
     private var colorPicker = UIColorPickerViewController()
@@ -32,6 +33,20 @@ class SettingsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         useLocale()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.title = "settings".localized(Settings.lang)
+        self.navigationController?.navigationBar.barTintColor = Settings.color
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     private func useLocale() {
@@ -40,6 +55,7 @@ class SettingsViewController: UIViewController {
         sizeButton.setTitle("size".localized(lang), for: .normal)
         colorButton.setTitle("color".localized(lang), for: .normal)
         languageButton.setTitle("language".localized(lang), for: .normal)
+        logoutButton.setTitle("logout".localized(lang), for: .normal)
     }
     
     private func selectColor() {
@@ -96,7 +112,7 @@ extension SettingsViewController: UIColorPickerViewControllerDelegate {
         Settings.color = selectedColor
         view.backgroundColor = selectedColor
         print("Color selected")
-     //   UserDefaults.standard.setValue(selectedColor, forKey: "textColor")
+        UserDefaults.standard.setColor(color: selectedColor, forKey: "color")
     }
     
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
@@ -110,8 +126,8 @@ extension SettingsViewController: UIFontPickerViewControllerDelegate {
         selectedFont = viewController.selectedFontDescriptor!
         Settings.font = selectedFont
         fontButton.titleLabel?.font = UIFont(descriptor: Settings.font, size: textSize)
-        print("Font picked")
-        UserDefaults.standard.set(selectedFont.pointSize, forKey: "fontSize");
+        print("Font picked \(selectedFont.pointSize)")
+        UserDefaults.standard.set(Float(selectedFont.pointSize), forKey: "fontSize");
         UserDefaults.standard.set(selectedFont.postscriptName, forKey: "fontName");
         
     }

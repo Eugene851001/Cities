@@ -30,6 +30,8 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var populationLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var capitalLabel: UILabel!
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var longitudeLabel: UILabel!
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -45,11 +47,42 @@ class RegistrationViewController: UIViewController {
         yearLabel.text = "year".localized(lang)
         capitalLabel.text = "capital".localized(lang)
         countryLabel.text  = "country".localized(lang)
+        latitudeLabel.text = "latitude".localized(lang)
+        longitudeLabel.text = "longitude".localized(lang)
         registrationButton.setTitle("registrate".localized(lang), for: .normal)
     }
     
     
     @IBAction func onRegistrate(_ sender: Any) {
+        
+        var validatorResult = CityValidator.isValidYear(yearField.text)
+        if validatorResult != nil {
+            let alert = ErrorAlertFactory.getAlert(validatorResult!)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        validatorResult = CityValidator.isValidLatitude(latitudeField.text)
+        if validatorResult != nil {
+            let alert = ErrorAlertFactory.getAlert(validatorResult!)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        validatorResult = CityValidator.isValidLongitide(longitudeField.text)
+        if validatorResult != nil {
+            let alert = ErrorAlertFactory.getAlert(validatorResult!)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        validatorResult = CityValidator.isValidPopulation(populationField.text)
+        if validatorResult != nil {
+            let alert = ErrorAlertFactory.getAlert(validatorResult!)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         let email = emailField.text!
         let password = passwordField.text!
         let name = nameField.text!
@@ -65,7 +98,9 @@ class RegistrationViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password, completion:
                                 {(user, err) in
                                     if (err != nil) {
-                                        self.emailField.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+                                        let alert = ErrorAlertFactory.getAlert("Error during registration")
+                                        //self.emailField.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+                                        self.present(alert, animated: true, completion: nil)
                                         print(err!)
                                     } else {
                                         self.emailField.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)

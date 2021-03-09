@@ -15,7 +15,7 @@ import AVFoundation
 class CityViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var currentCity: City!
-    var cityId: String!
+   /// var cityId: String!
     var images = [UIImage]()
     
     var videoPlayer: AVPlayer?
@@ -23,7 +23,6 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var countryField: UITextField!
     @IBOutlet weak var photoView: UIImageView!
-    @IBOutlet weak var videoButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var yearField: UITextField!
     @IBOutlet weak var populationField: UITextField!
@@ -34,7 +33,6 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var populationLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
-    
     @IBOutlet weak var capitalLabel: UILabel!
     
     @IBAction func onGalleryButtonClick(_ sender: Any) {
@@ -57,6 +55,21 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func onSaveButtonClick(_ sender: Any) {
+        
+        var validatorResult = CityValidator.isValidPopulation(populationField.text)
+        if validatorResult != nil {
+            let alert = ErrorAlertFactory.getAlert(validatorResult!)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        validatorResult = CityValidator.isValidYear(yearField.text)
+        if validatorResult != nil {
+            let alert = ErrorAlertFactory.getAlert(validatorResult!)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         currentCity.name = nameField.text!
         currentCity.country = countryField.text!
         
@@ -72,22 +85,21 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let db = Firestore.firestore()
         do {
-            let _ = try db.collection("cities").document(cityId).setData(from: currentCity)
+            let _ = try db.collection("cities").document(currentCity.ID!).setData(from: currentCity)
         } catch {
             print(error)
         }
         
-        performSegue(withIdentifier: "showCitiesSegue", sender: self)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func onAddVideoButtonClick(_ sender: Any) {
-        currentCity.video = "videos/Example.mp4"
         
-        /*let videoPicker = UIImagePickerController()
+        let videoPicker = UIImagePickerController()
         videoPicker.allowsEditing = false
         videoPicker.delegate = self
         videoPicker.mediaTypes = ["public.movie"]
-        self.present(videoPicker, animated: true)*/
+        self.present(videoPicker, animated: true)
     }
     
     @IBAction func onAddImageButtonClick(_ sender: Any) {
@@ -107,11 +119,12 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         getImages()
         localizeLabels()
         
-        if currentCity.video == nil {
-            videoButton.isEnabled = false
-        } else {
-            videoButton.isEnabled = true
-        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.title = "city".localized(Settings.lang)
     }
     
     func setVideo(_ city: City) {
@@ -127,6 +140,7 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 let layer = AVPlayerLayer(player: self.videoPlayer)
                 layer.frame = self.videoView.layer.bounds
                 self.videoView.layer.addSublayer(layer)
+                self.videoPlayer?.seek(to: .zero)
             })
 
         }
@@ -183,21 +197,47 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         countryLabel.text = "country".localized(lang)
         populationLabel.text = "population".localized(lang)
         yearLabel.text = "year".localized(lang)
+        capitalLabel.text = "capital".localized(lang)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let mediaType = info[.mediaType] as! String
+        if mediaType == "public.movie" {
+            print("Selected movie")
+            let videoURL = info[.mediaURL] as! URL
+            print(videoURL)
+            let firebaseVideoPath = "videos/\(currentCity.ID!)/video.mp4"
+            currentCity.video = firebaseVideoPath
+            let videoRef = Storage.storage().reference().child(firebaseVideoPath)
+            let metadata = StorageMetadata()
+            metadata.contentType = "video/quicktime"
+            if let videoData = NSData(contentsOf: videoURL) as Data? {
+                videoRef.putData(videoData, metadata: metadata) { (data, err) in
+                    if let myError = err {
+                        print(myError)
+                    }
+                    
+                    self.setVideo(self.currentCity)
+                }
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
         let photoURL = info[.imageURL] as! URL
         print(photoURL)
         let image = info[.originalImage] as! UIImage
         photoView.image = image
-        let firebaseImagePath = "images/\(String(describing: cityId))/\(currentCity.images.count)"
+        let firebaseImagePath = "images/\(currentCity.ID!)/\(currentCity.images.count)"
         let imageRef = Storage.storage().reference().child(firebaseImagePath)
-        imageRef.putFile(from: photoURL, metadata: nil){ (data, err) in
+        imageRef.putFile(from: photoURL, metadata: nil) { (data, err) in
             if let myError = err {
                 print(myError)
             }
         }
         
         currentCity.images.append(firebaseImagePath)
+        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -27,3 +27,17 @@
 
 "yearFrom" = "Year from";
 "yearTo" = "Year to";
+"populationMin" = "Population min";
+"populationMax" = "Population max";
+
+"set" = "Set";
+"reset" = "reset";
+"save" = "Save";
+
+"city" = "City";
+"cities" = "Cities";
+"settings" = "Settings";
+"map" = "Map";
+"filter" = "Filter";
+"gallery" = "Gallery";
+

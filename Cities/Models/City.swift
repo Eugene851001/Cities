@@ -20,7 +20,7 @@ class City: Codable {
     var latitude: Double?
     var longitude: Double?
     
-    var ID: Int?
+    var ID: String?
     
     var images = [String]()
     

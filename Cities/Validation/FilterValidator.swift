@@ -9,7 +9,7 @@ import Foundation
 
 class FilterValidator {
     
-    static func isValidCountry(_ country: String?) -> Bool{
+    static func isValidCountry(_ country: String?) -> Bool {
         if country == nil {
             return false
         }

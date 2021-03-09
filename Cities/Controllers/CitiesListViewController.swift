@@ -18,7 +18,6 @@ class CitiesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tabBar: UITabBarItem!
     
     var cities = [City]()
-    var citiesId = [String]()
     var currentIndex = 0
     
     private var currentUserMail = ""
@@ -26,10 +25,18 @@ class CitiesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .done, target: self, action: #selector(onFilterClicked))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "filter".localized(Settings.lang), style: .done, target: self, action: #selector(onFilterClicked))
        // self.navigationController?.navigationBar.tintColor = Settings.color
 
+
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     
     @objc func onFilterClicked() {
         performSegue(withIdentifier: "showFilterSegue", sender: self)
@@ -53,10 +60,12 @@ class CitiesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.nameLabel.font = UIFont(descriptor: Settings.font, size: Settings.textSize)
         cell.countryLabel.text = city.country
         cell.countryLabel.backgroundColor = Settings.color
+        cell.avatarImageView.image = nil
         
         if city.mail == currentUserMail {
-            print("\(city.name): \(city.mail)")
             cell.backgroundColor = UIColor.green
+        } else {
+            cell.backgroundColor = UIColor.white
         }
         
         if (city.images.count > 0) {
@@ -66,6 +75,7 @@ class CitiesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(myError)
                     return
                 }
+                
                 let img = UIImage(data: data!)
                 cell.avatarImageView.image = img
             })
@@ -79,26 +89,29 @@ class CitiesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       // tabBar.badgeColor = Style.color
         
+        self.navigationItem.title = "cities".localized(Settings.lang)
         if let mail = UserDefaults.standard.string(forKey: "mail") {
             currentUserMail = mail
         }
         
-        self.navigationController?.navigationBar.backgroundColor = Settings.color
+        self.navigationController?.navigationBar.barTintColor = Settings.color
         let db = Firestore.firestore()
         db.collection("cities").getDocuments(completion: {(querySnapshot, err) in
             if (err != nil) {
                 print(err!)
                 
             } else {
+                self.cities.removeAll()
                 for document in querySnapshot!.documents {
                     let name = String(describing: document.data()["name"])
-                    self.citiesId.append(document.documentID)
+                    if let temp = try? document.data(as: City.self) {
+                        temp.ID = document.documentID
+                        self.cities.append(temp)
+                    }
+                    
                     print(name)
                 }
-                let cities = querySnapshot!.documents
-                self.cities = cities.compactMap({try? $0.data(as: City.self)})
                 
                 if (FilterSettings.country != nil) {
                     print("Filter by country \(FilterSettings.country!)")
@@ -120,9 +133,23 @@ class CitiesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     self.cities = self.cities.compactMap({$0.year! <= FilterSettings.yearTo! ? $0 : nil})
                 }
                 
+                if FilterSettings.name != nil {
+                    print("Filter by name \(FilterSettings.name!)")
+                    self.cities = self.cities.compactMap({$0.name == FilterSettings.name! ? $0 : nil})
+                }
+                
+                if FilterSettings.populationFrom != nil {
+                    print("Filter by population min \(FilterSettings.populationFrom!)")
+                    self.cities = self.cities.compactMap({$0.population! >= FilterSettings.populationFrom! ? $0 : nil})
+                }
+                
+                if FilterSettings.populationTo != nil {
+                    print("Filter by population max \(FilterSettings.populationTo!)")
+                    self.cities = self.cities.compactMap({$0.population! <= FilterSettings.populationTo! ? $0 : nil})
+                }
+                
                 self.citiesTable.reloadData()
                 CitiesService.shared.cities = self.cities
-                CitiesService.shared.citiesId = self.citiesId
             }
         })
         
@@ -133,7 +160,6 @@ class CitiesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case "showCitySegue":
             let destination = segue.destination as! CityViewController
             destination.currentCity = cities[currentIndex]
-            destination.cityId = citiesId[currentIndex]
         default:
             break
         }

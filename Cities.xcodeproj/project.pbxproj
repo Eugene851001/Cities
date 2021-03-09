@@ -8,20 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		7341463012D7D79022CBCE3D /* Pods_CitiesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201038B95A69CA03D30C5F89 /* Pods_CitiesTests.framework */; };
+		840A94C625F733D000E20A05 /* CityValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A94C525F733D000E20A05 /* CityValidator.swift */; };
+		840A94CB25F73A0800E20A05 /* ErrorAlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A94CA25F73A0800E20A05 /* ErrorAlertFactory.swift */; };
 		841D34AA25E17073005A81FA /* CitiesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D34A925E17073005A81FA /* CitiesListViewController.swift */; };
 		84413CBB25E6BCFF00B3003A /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84413CBA25E6BCFF00B3003A /* CityTableViewCell.swift */; };
 		84413CBD25E7055600B3003A /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84413CBC25E7055600B3003A /* VideoView.swift */; };
-		84413CBF25E705AE00B3003A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84413CBE25E705AE00B3003A /* VideoViewController.swift */; };
-		84413CC125E70A5900B3003A /* OpenGL.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84413CC025E70A5900B3003A /* OpenGL.mp4 */; };
 		84413CC325E7BD9700B3003A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84413CC225E7BD9700B3003A /* MapViewController.swift */; };
-		84413CC525E9AF0A00B3003A /* CoordinatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84413CC425E9AF0A00B3003A /* CoordinatesService.swift */; };
 		84413CC725EABB3900B3003A /* CitiesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84413CC625EABB3800B3003A /* CitiesService.swift */; };
 		8454F0D325F62EE0000B27E2 /* FilterValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8454F0D225F62EE0000B27E2 /* FilterValidator.swift */; };
 		8455187925F4B33D005F9D7D /* LocalizationStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455187825F4B33D005F9D7D /* LocalizationStringExtension.swift */; };
 		8455187C25F4B500005F9D7D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8455187E25F4B500005F9D7D /* Localizable.strings */; };
 		8455188125F4DC93005F9D7D /* LangPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455188025F4DC93005F9D7D /* LangPickerViewController.swift */; };
 		845567A725E0FADC000439FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 845567A625E0FADC000439FF /* GoogleService-Info.plist */; };
-		845567A925E10634000439FF /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845567A825E10634000439FF /* DataService.swift */; };
 		845567AB25E1086D000439FF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845567AA25E1086D000439FF /* Constants.swift */; };
 		845567AF25E118B1000439FF /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845567AE25E118B1000439FF /* RegistrationViewController.swift */; };
 		8478812525EAF4B80011D702 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8478812425EAF4B80011D702 /* Colors.xcassets */; };
@@ -60,14 +58,13 @@
 		201038B95A69CA03D30C5F89 /* Pods_CitiesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CitiesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304AA2203000F3A0DB0EA299 /* Pods-Cities-CitiesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cities-CitiesUITests.release.xcconfig"; path = "Target Support Files/Pods-Cities-CitiesUITests/Pods-Cities-CitiesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5139B07BF9101B1323E2E7D8 /* Pods-Cities-CitiesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cities-CitiesUITests.debug.xcconfig"; path = "Target Support Files/Pods-Cities-CitiesUITests/Pods-Cities-CitiesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		840A94C525F733D000E20A05 /* CityValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityValidator.swift; sourceTree = "<group>"; };
+		840A94CA25F73A0800E20A05 /* ErrorAlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertFactory.swift; sourceTree = "<group>"; };
 		841D34A925E17073005A81FA /* CitiesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewController.swift; sourceTree = "<group>"; };
 		842CAA1F25F2CB2A00B8125C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		84413CBA25E6BCFF00B3003A /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		84413CBC25E7055600B3003A /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
-		84413CBE25E705AE00B3003A /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		84413CC025E70A5900B3003A /* OpenGL.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenGL.mp4; sourceTree = "<group>"; };
 		84413CC225E7BD9700B3003A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		84413CC425E9AF0A00B3003A /* CoordinatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesService.swift; sourceTree = "<group>"; };
 		84413CC625EABB3800B3003A /* CitiesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesService.swift; sourceTree = "<group>"; };
 		8454F0D225F62EE0000B27E2 /* FilterValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterValidator.swift; sourceTree = "<group>"; };
 		8455187825F4B33D005F9D7D /* LocalizationStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationStringExtension.swift; sourceTree = "<group>"; };
@@ -75,7 +72,6 @@
 		8455187F25F4B505005F9D7D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8455188025F4DC93005F9D7D /* LangPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangPickerViewController.swift; sourceTree = "<group>"; };
 		845567A625E0FADC000439FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
-		845567A825E10634000439FF /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		845567AA25E1086D000439FF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		845567AE25E118B1000439FF /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8478812425EAF4B80011D702 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -152,12 +148,32 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		840A94C925F7398400E20A05 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84F76A1A25F02ED600EF78E0 /* UserDefaultsColorExtension.swift */,
+				8455187825F4B33D005F9D7D /* LocalizationStringExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8454F0D125F62E6B000B27E2 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
 				8454F0D225F62EE0000B27E2 /* FilterValidator.swift */,
+				840A94C525F733D000E20A05 /* CityValidator.swift */,
 			);
 			path = Validation;
+			sourceTree = "<group>";
+		};
+		84DECBDB25F7A8D60094C65E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				84413CC625EABB3800B3003A /* CitiesService.swift */,
+				845567AA25E1086D000439FF /* Constants.swift */,
+				840A94CA25F73A0800E20A05 /* ErrorAlertFactory.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		84EB36E025DF03A200016017 = {
@@ -183,6 +199,8 @@
 		84EB36EB25DF03A300016017 /* Cities */ = {
 			isa = PBXGroup;
 			children = (
+				84DECBDB25F7A8D60094C65E /* Utilities */,
+				840A94C925F7398400E20A05 /* Extensions */,
 				8454F0D125F62E6B000B27E2 /* Validation */,
 				84FB9C8925E44359001B888B /* Models */,
 				84FB9C8825E44359001B888B /* Controllers */,
@@ -190,19 +208,10 @@
 				84EB36EE25DF03A300016017 /* SceneDelegate.swift */,
 				84EB36F225DF03A400016017 /* Main.storyboard */,
 				84EB36F525DF03AF00016017 /* Assets.xcassets */,
-				84413CC025E70A5900B3003A /* OpenGL.mp4 */,
 				84EB36F725DF03B000016017 /* LaunchScreen.storyboard */,
 				84EB36FA25DF03B000016017 /* Info.plist */,
 				845567A625E0FADC000439FF /* GoogleService-Info.plist */,
-				845567A825E10634000439FF /* DataService.swift */,
-				845567AA25E1086D000439FF /* Constants.swift */,
-				84413CC425E9AF0A00B3003A /* CoordinatesService.swift */,
-				84413CC625EABB3800B3003A /* CitiesService.swift */,
 				8478812425EAF4B80011D702 /* Colors.xcassets */,
-				8478812625EAF5E80011D702 /* Settings.swift */,
-				84F76A1A25F02ED600EF78E0 /* UserDefaultsColorExtension.swift */,
-				84F57A2A25F03BFC001F3ABA /* FilterSettings.swift */,
-				8455187825F4B33D005F9D7D /* LocalizationStringExtension.swift */,
 				8455187E25F4B500005F9D7D /* Localizable.strings */,
 			);
 			path = Cities;
@@ -220,8 +229,8 @@
 		84FB9C8825E44359001B888B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				84F7898225E3B7B1002CACFA /* CityViewController.swift */,
 				841D34A925E17073005A81FA /* CitiesListViewController.swift */,
+				84F7898225E3B7B1002CACFA /* CityViewController.swift */,
 				845567AE25E118B1000439FF /* RegistrationViewController.swift */,
 				84EB36F025DF03A300016017 /* ViewController.swift */,
 				84F98BA225E5308300C7BE02 /* ImageCell.swift */,
@@ -229,7 +238,6 @@
 				84F98BA625E6AA3600C7BE02 /* ImageViewController.swift */,
 				84413CBA25E6BCFF00B3003A /* CityTableViewCell.swift */,
 				84413CBC25E7055600B3003A /* VideoView.swift */,
-				84413CBE25E705AE00B3003A /* VideoViewController.swift */,
 				84413CC225E7BD9700B3003A /* MapViewController.swift */,
 				8478812825EAF8DF0011D702 /* SettingsViewController.swift */,
 				84F76A1825EBAC3200EF78E0 /* SizePickerViewController.swift */,
@@ -242,6 +250,8 @@
 		84FB9C8925E44359001B888B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8478812625EAF5E80011D702 /* Settings.swift */,
+				84F57A2A25F03BFC001F3ABA /* FilterSettings.swift */,
 				84D28C6A25E2F3960030CB0F /* City.swift */,
 			);
 			path = Models;
@@ -332,7 +342,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84413CC125E70A5900B3003A /* OpenGL.mp4 in Resources */,
 				84EB36F925DF03B000016017 /* LaunchScreen.storyboard in Resources */,
 				845567A725E0FADC000439FF /* GoogleService-Info.plist in Resources */,
 				8455187C25F4B500005F9D7D /* Localizable.strings in Resources */,
@@ -442,7 +451,6 @@
 				8478812725EAF5E80011D702 /* Settings.swift in Sources */,
 				845567AF25E118B1000439FF /* RegistrationViewController.swift in Sources */,
 				8478812925EAF8DF0011D702 /* SettingsViewController.swift in Sources */,
-				84413CC525E9AF0A00B3003A /* CoordinatesService.swift in Sources */,
 				845567AB25E1086D000439FF /* Constants.swift in Sources */,
 				841D34AA25E17073005A81FA /* CitiesListViewController.swift in Sources */,
 				84EB36F125DF03A300016017 /* ViewController.swift in Sources */,
@@ -450,13 +458,13 @@
 				84F7898325E3B7B1002CACFA /* CityViewController.swift in Sources */,
 				84F76A1925EBAC3300EF78E0 /* SizePickerViewController.swift in Sources */,
 				84EB36EF25DF03A300016017 /* SceneDelegate.swift in Sources */,
-				84413CBF25E705AE00B3003A /* VideoViewController.swift in Sources */,
 				84413CBD25E7055600B3003A /* VideoView.swift in Sources */,
 				84413CBB25E6BCFF00B3003A /* CityTableViewCell.swift in Sources */,
+				840A94CB25F73A0800E20A05 /* ErrorAlertFactory.swift in Sources */,
 				8455188125F4DC93005F9D7D /* LangPickerViewController.swift in Sources */,
 				84D28C6B25E2F3960030CB0F /* City.swift in Sources */,
-				845567A925E10634000439FF /* DataService.swift in Sources */,
 				84413CC725EABB3900B3003A /* CitiesService.swift in Sources */,
+				840A94C625F733D000E20A05 /* CityValidator.swift in Sources */,
 				8454F0D325F62EE0000B27E2 /* FilterValidator.swift in Sources */,
 				84F57A2D25F03CDE001F3ABA /* FilterViewController.swift in Sources */,
 				84F76A1B25F02ED600EF78E0 /* UserDefaultsColorExtension.swift in Sources */,

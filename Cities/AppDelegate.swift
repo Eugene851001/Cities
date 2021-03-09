@@ -23,21 +23,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Settings.lang = lang
         }
         
+        print(UserDefaults.standard.float(forKey: "textSize"))
         let textSize = UserDefaults.standard.float(forKey: "textSize")
         if (textSize != 0) {
             Settings.textSize = CGFloat(textSize)
         }
         
+        print(UserDefaults.standard.float(forKey: "fontSize"))
+        print(UserDefaults.standard.string(forKey: "fontName")!)
         let fontSize = UserDefaults.standard.float(forKey: "fontSize");
-        if fontSize != 0, let fontName = UserDefaults.standard.string(forKey: "fontName") {
+        if let fontName = UserDefaults.standard.string(forKey: "fontName") {
             Settings.font = UIFontDescriptor(name: fontName, size: CGFloat(fontSize))
         }
         
-        
-        
-       /* if let textSize = UserDefaults.standard.float(forKey: "textSize") {
-            Settings.textSize = CGFloat(textSize)
-        }*/
+        if let color = UserDefaults.standard.colorForKey(key: "color") {
+            Settings.color = color
+        }
         
         return true
     }

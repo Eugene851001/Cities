@@ -13,6 +13,8 @@ protocol SizePickerDelegate {
 
 class SizePickerViewController: UIViewController {
     
+    @IBOutlet weak var picker: UIPickerView!
+    
     var delegate: SizePickerDelegate?
 
     private var textSize: CGFloat = 17.0
@@ -24,6 +26,10 @@ class SizePickerViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        textSize = Settings.textSize
+        let row = textSizes.firstIndex(of: String(describing: textSize))
+        print("Row: \(row!)")
+        picker.selectRow(row!, inComponent: 0, animated: true)
     }
     
 
