@@ -19,14 +19,15 @@
 "logout" = "Выйти"; 
 "password" = "Пароль";
 "email" = "Почта";
+"mail" = "Почта";
 
 "font" = "Шрифт";
 "color" = "Цвет";
 "size" = "Размер";
 "language" = "Язык";
 
-"yearFrom" = "Минимальный год";
-"yearTo" = "Максимальный год";
+"yearFrom" = "Мин. год";
+"yearTo" = "Макс. год";
 "populationMin" = "Мин. население";
 "populationMax" = "Макс. население";
 
@@ -40,3 +41,8 @@
 "map" = "Карта";
 "filter" = "Фильтр";
 "gallery" = "Галлерея";
+
+"addImage" = "Добавить";
+"viewMore" = "Галлерея";
+"addVideo" = "Добавить";
+"playVideo" = "Воспроизвести";

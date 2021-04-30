@@ -55,6 +55,7 @@ class FilterViewController: UIViewController {
         }
         
         if yearFromField.text != nil && yearFromField.text!.count > 0 {
+            print(yearFromField.text!)
             if !isValidYear(yearFromField.text) {
                 return
             }
@@ -65,13 +66,14 @@ class FilterViewController: UIViewController {
         }
         
         if yearToField.text != nil && yearToField.text!.count > 0 {
+            print(yearToField.text!)
             if !isValidYear(yearToField.text) {
                 return
             }
             
-            FilterSettings.yearFrom = Int(yearFromField.text!)
+            FilterSettings.yearTo = Int(yearToField.text!)
         } else {
-            FilterSettings.yearFrom = nil
+            FilterSettings.yearTo = nil
         }
         
         if nameField.text != nil && nameField.text!.count > 0 {
@@ -136,8 +138,8 @@ class FilterViewController: UIViewController {
         nameLabel.text = "name".localized(lang)
         populationMinLabel.text = "populationMin".localized(lang)
         populationMaxLabel.text = "populationMax".localized(lang)
-        setButton.titleLabel?.text = "set".localized(lang)
-        resetButton.titleLabel?.text = "reset".localized(lang)
+        setButton.setTitle("set".localized(lang), for: .normal)
+        resetButton.setTitle("reset".localized(lang), for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {

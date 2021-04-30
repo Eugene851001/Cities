@@ -90,6 +90,7 @@ class CitiesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationItem.rightBarButtonItem?.title = "filter".localized(Settings.lang)
         self.navigationItem.title = "cities".localized(Settings.lang)
         if let mail = UserDefaults.standard.string(forKey: "mail") {
             currentUserMail = mail

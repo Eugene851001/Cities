@@ -17,16 +17,19 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cities = CitiesService.shared.cities!
+        if cities.count < 1 {
+            let alert = ErrorAlertFactory.getAlert("No cities to show")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         
-        
-        let latitude = 53.906321
-        let longitude = 21.570538
+        let latitude = cities[0].latitude!
+        let longitude = cities[0].longitude!
         let camera =  GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 6.0)
         let mapView = GMSMapView(frame: self.view.frame, camera: camera)
         mapView.delegate = self
         self.view.addSubview(mapView)
-        
-        cities = CitiesService.shared.cities!
         
         for city in cities {
             guard let latitude = city.latitude,

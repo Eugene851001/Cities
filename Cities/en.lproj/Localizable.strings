@@ -19,6 +19,7 @@
 "logout" = "log out";
 "password" = "password";
 "email" = "email";
+"mail" = "mail";
 
 "font" = "Font";
 "color" = "Color";
@@ -40,4 +41,9 @@
 "map" = "Map";
 "filter" = "Filter";
 "gallery" = "Gallery";
+
+"addImage" = "Add image";
+"viewMore" = "View more";
+"addVideo" = "Add video";
+"playVideo" = "Play video";
 

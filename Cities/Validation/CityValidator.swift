@@ -33,13 +33,13 @@ class CityValidator {
         }
         
         guard let value = Float(longitude!) else {
-            return "The latitude should be float number"
+            return "The longitude should be float number"
         }
         
-        let minValue: Float = 0.0
+        let minValue: Float = -180.0
         let maxValue: Float = 180.0
         if value < minValue || value > maxValue {
-            return "The latitude value should be from \(minValue) to \(maxValue)"
+            return "The longitude value should be from \(minValue) to \(maxValue)"
         }
         
         return nil
@@ -73,11 +73,11 @@ class CityValidator {
             return "The year should be integer"
         }
         
-        let minValue = 0
+        let minValue = -9600
         let maxValue = 2021
         
         if value < minValue || value > maxValue {
-            return "The value should be from \(minValue) to \(maxValue)"
+            return "The year value should be from \(minValue) to \(maxValue)"
         }
             
         return nil

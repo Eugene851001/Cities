@@ -110,7 +110,7 @@ extension SettingsViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         selectedColor = viewController.selectedColor
         Settings.color = selectedColor
-        view.backgroundColor = selectedColor
+      //  view.backgroundColor = selectedColor
         print("Color selected")
         UserDefaults.standard.setColor(color: selectedColor, forKey: "color")
     }
@@ -138,7 +138,7 @@ extension SettingsViewController: SizePickerDelegate {
         self.textSize = textSize
         Settings.textSize = textSize
         print("Size picked");
-        fontButton.titleLabel?.font = UIFont(descriptor: Settings.font, size: Settings.textSize)
+        sizeButton.titleLabel?.font = UIFont(descriptor: Settings.font, size: Settings.textSize)
         UserDefaults.standard.setValue(Float(textSize), forKey: "textSize")
     }
 }

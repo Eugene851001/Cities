@@ -27,14 +27,24 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var yearField: UITextField!
     @IBOutlet weak var populationField: UITextField!
     @IBOutlet weak var capitalSwitch: UISwitch!
-    
+    @IBOutlet weak var latitudeField: UITextField!
+    @IBOutlet weak var longitudeField: UITextField!
+    @IBOutlet weak var mailField: UITextField!
+    @IBOutlet weak var playButton: UIButton!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var populationLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var capitalLabel: UILabel!
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet weak var addImageButton: UIButton!
+    @IBOutlet weak var viewMoreButton: UIButton!
+    @IBOutlet weak var addVideoButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var mailLabel: UILabel!
     @IBAction func onGalleryButtonClick(_ sender: Any) {
         performSegue(withIdentifier: "showGallerySegue", sender: self)
     }
@@ -70,6 +80,20 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             return
         }
         
+        validatorResult = CityValidator.isValidLatitude(latitudeField.text)
+        if validatorResult != nil {
+            let alert = ErrorAlertFactory.getAlert(validatorResult!)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        validatorResult = CityValidator.isValidLongitide(longitudeField.text)
+        if validatorResult != nil {
+            let alert = ErrorAlertFactory.getAlert(validatorResult!)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         currentCity.name = nameField.text!
         currentCity.country = countryField.text!
         
@@ -79,6 +103,14 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         if let year  = Int(yearField.text!) {
             currentCity.year = year
+        }
+        
+        if let latitude = Double(latitudeField.text!) {
+            currentCity.latitude = latitude
+        }
+        
+        if let longitude = Double(longitudeField.text!) {
+            currentCity.longitude = longitude
         }
         
         currentCity.capital = capitalSwitch.isOn
@@ -129,6 +161,7 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func setVideo(_ city: City) {
         if let videoPath = city.video {
+            self.playButton.isHidden = false
             let videoRef = Storage.storage().reference().child(videoPath)
             videoRef.downloadURL(completion: {(URL, err) in
                 if let myError = err {
@@ -143,6 +176,8 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 self.videoPlayer?.seek(to: .zero)
             })
 
+        } else {
+            self.playButton.isHidden = true
         }
     }
     
@@ -172,6 +207,19 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             yearField.text = String(describing: year)
         }
         
+        if let latitude = city.latitude {
+            latitudeField.text = String(describing: latitude)
+        }
+        
+        if let longitude = city.longitude {
+            longitudeField.text = String(describing: longitude)
+        }
+        
+        if let mail = city.mail {
+            mailField.text = mail
+            mailField.isUserInteractionEnabled = false
+        }
+        
         capitalSwitch.isOn = city.capital
     }
     
@@ -198,6 +246,14 @@ class CityViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         populationLabel.text = "population".localized(lang)
         yearLabel.text = "year".localized(lang)
         capitalLabel.text = "capital".localized(lang)
+        longitudeLabel.text = "longitude".localized(lang)
+        latitudeLabel.text = "latitude".localized(lang)
+        mailLabel.text = "mail".localized(lang)
+        addImageButton.setTitle("addImage".localized(lang), for: .normal)
+        viewMoreButton.setTitle("viewMore".localized(lang), for: .normal)
+        addVideoButton.setTitle("addVideo".localized(lang), for: .normal)
+        playButton.setTitle("playVideo".localized(lang), for: .normal)
+        saveButton.setTitle("save".localized(lang), for: .normal)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
